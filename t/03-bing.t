@@ -7,9 +7,9 @@ BEGIN
 {
     ok(WWW::Search::Scrape::Bing::search('bing', 10));
 
-    my $res = WWW::Search::Scrape::Bing::search('site:cnblog.suninformationservice.com', 10);
+    my $res = WWW::Search::Scrape::Bing::search('site:google.com', 10);
     ok($res->{num} == 0);
 
-    $res = WWW::Search::Scrape::Bing::search('site:www.yingbishufa.com', 10);
+    $res = WWW::Search::Scrape::Bing::search('site:google.com', 10);
     ok($res->{num} != 0);
 }
