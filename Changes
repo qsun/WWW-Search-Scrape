@@ -1,5 +1,10 @@
 Revision history for WWW-Search-Scrape
 
+0.06    17 Apr 2010/20:00
+    * Fix 0.05 problems
+    * Add google geo location
+    * Add dependences check
+
 0.05    11 Oct 2009/09:00
     Default use google.com/ncr 
     Add frontpage parameter to dispatch target country for google

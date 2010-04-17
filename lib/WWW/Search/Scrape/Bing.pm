@@ -15,11 +15,11 @@ use HTML::TreeBuilder;
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 SYNOPSIS
 
@@ -111,8 +111,11 @@ sub search($$;$)
     my @x = $tree->look_down('_tag', 'h3');
 
     foreach (@x) {
-	my ($link) = $_->look_down('_tag', 'a');
-	push @res, $link->attr('href') unless $link->attr('href') =~ /^\//;
+        my ($link) = $_->look_down('_tag', 'a');
+
+        if ($link) {
+            push @res, $link->attr('href') unless $link->attr('href') =~ /^\//;
+        }
     }
 
 ### Result: @res
