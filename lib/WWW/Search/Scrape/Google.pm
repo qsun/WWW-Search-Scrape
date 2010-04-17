@@ -15,11 +15,11 @@ use WWW::Mechanize;
 
 =head1 VERSION
 
-Version 0.06
+Version 0.05
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -46,7 +46,6 @@ Actually there is another optional argument, content, which is used in debug/tes
 =cut
 
 our $frontpage = 'http://www.google.com/ncr';
-our $geo_location = '';
 
 sub search($$;$)
 {
@@ -69,15 +68,14 @@ sub search($$;$)
     {
         my $mech = WWW::Mechanize->new(agent => 'NotWannaTellYou', cookie_jar => {});
         $mech->get($frontpage);
-        #$mech->dump_forms;
+        $mech->dump_forms;
         $mech->submit_form(
                            form_number => 1,
                            fields => {
                                       q => $keyword,
-                                      num => $results_num,
+                                      num => 100,
                                       start => 0,
-                                      gl => $geo_location
-                                     },
+                                      },
                            button => 'btnG');
         if ($mech->success) {
             $content = $mech->response()->decoded_content();
@@ -130,5 +128,4 @@ sub search($$;$)
 ### Result: @res
     return {num => $num, results => \@res};
 }
-
-1;
+    
