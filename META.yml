@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               WWW-Search-Scrape
-version:            0.06
+version:            0.07
 abstract:           ~
 author:
     - Quan Sun <qsun@pardiff.com>

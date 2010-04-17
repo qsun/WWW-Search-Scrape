@@ -1,5 +1,8 @@
 Revision history for WWW-Search-Scrape
 
+0.07    17 Apr 2010/22:00
+    Add support for Yahoo
+
 0.06    17 Apr 2010/20:00
     * Fix 0.05 problems
     * Add google geo location
