@@ -3,7 +3,7 @@ name:               WWW-Search-Scrape
 version:            0.05
 abstract:           ~
 author:
-    - Quan Sun <cfk.quan@gmail.com>
+    - Quan Sun <qsun@pardiff.com>
 license:            perl
 distribution_type:  module
 configure_requires:
