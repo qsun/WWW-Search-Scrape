@@ -10,6 +10,7 @@ use Carp;
 
 use WWW::Search::Scrape::Google;
 use WWW::Search::Scrape::Bing;
+use WWW::Search::Scrape::Yahoo;
 
 =head1 NAME
 
