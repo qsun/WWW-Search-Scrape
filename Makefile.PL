@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'WWW::Search::Scrape',
-    AUTHOR              => q{Quan Sun <cfk.quan@gmail.com>},
+    AUTHOR              => q{Quan Sun <qsun@pardiff.com>},
     VERSION_FROM        => 'lib/WWW/Search/Scrape.pm',
     ABSTRACT_FROM       => 'lib/WWW/Search/Scrape.pm',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
