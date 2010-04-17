@@ -17,11 +17,11 @@ use WWW::Search::Scrape::Bing;
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 =head1 SYNOPSIS
@@ -111,6 +111,9 @@ sub search (%) {
     }
 
     if (lc $q->{engine} eq 'google') {
+	if ($q->{geo_location}) {
+	     $WWW::Search::Scrape::Google::geo_location = $q->{geo_location};
+	}
         if ($q->{frontpage}) {
             $WWW::Search::Scrape::Google::frontpage = $q->{frontpage};
         }

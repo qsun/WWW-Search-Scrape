@@ -1,9 +1,9 @@
 --- #YAML:1.0
 name:               WWW-Search-Scrape
-version:            0.05
+version:            0.06
 abstract:           ~
 author:
-    - Quan Sun <cfk.quan@gmail.com>
+    - Quan Sun <qsun@pardiff.com>
 license:            perl
 distribution_type:  module
 configure_requires:
