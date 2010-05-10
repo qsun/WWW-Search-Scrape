@@ -16,7 +16,8 @@ WriteMakefile(
                   'WWW::Mechanize' => 0,
                   'HTML::TreeBuilder' => 0,
                   'Data::Dumper' => 0, 
-                  'Test::Simple' => 0
+                  'Test::Simple' => 0,
+		  'HTML::TreeBuilder::XPath' => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'WWW-Search-Scrape-*' },

@@ -2,12 +2,14 @@ package WWW::Search::Scrape::Google;
 
 use warnings;
 use strict;
+use Data::Dumper;
 
 use Carp;
 
 #use LWP::UserAgent;
 use HTML::TreeBuilder;
 use WWW::Mechanize;
+use HTML::TreeBuilder::XPath;
 
 =head1 NAME
 
@@ -15,11 +17,11 @@ use WWW::Mechanize;
 
 =head1 VERSION
 
-Version 0.07
+Version 0.08
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
@@ -90,45 +92,18 @@ sub search($$;$)
 	    return undef;
     }
     
-    my $tree = HTML::TreeBuilder->new;
+    my $tree = HTML::TreeBuilder::XPath->new;
     $tree->parse($content);
     $tree->eof;
 
+    my $num_str = $tree->findvalue('//div[@id="resultStats"]');
+    if ($num_str =~ /([\d,]+)/) {
+	$num = $1;
+	$num =~ s/,//g;
+    }
+
     # parse Google returned number
-    {
-        my ($xx) = $tree->look_down('_tag', 'div',
-                                    sub
-                                    {
-                                        return unless $_[0]->attr('id') && $_[0]->attr('id') eq 'ssb';
-                                    });
-
-        unless ($xx) {
-            return {num => 0, results => undef};
-        }
-
-        my ($p) = $xx->look_down('_tag', 'p');
-        carp 'Can not parse Google result.' unless $p && ref $p eq 'HTML::Element';
-        my @r = $p->look_down('_tag', 'b');
-        if (scalar @r <= 3) {
-            ### No results.
-            return {num => 0, results => undef};
-        }
-
-        @r = $r[2]->content_list;
-        $num = join('', split(',', $r[0]));
-        ### Google returns: $num
-    }
-
-    my @x = $tree->look_down('_tag', 'h3', 
-			     sub {
-                     return unless $_[0] && $_[0]->attr('class') && $_[0]->attr('class') eq 'r';
-                     1;
-			     });
-
-    foreach (@x) {
-        my ($link) = $_->look_down('_tag', 'a');
-        push @res, $link->attr('href') unless $link->attr('href') =~ /^\//;
-    }
+    @res = $tree->findvalues('//li[@class="g"]/h3/a/@href');
 
 ### Result: @res
     return {num => $num, results => \@res};
