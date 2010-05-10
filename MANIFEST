@@ -14,5 +14,6 @@ t/pod-coverage.t
 t/pod.t
 t/samples/google-no-result.htm
 t/samples/google-result.html
+example/demo.pl
 
 META.yml                                 Module meta-data (added by MakeMaker)
