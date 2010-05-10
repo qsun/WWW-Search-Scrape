@@ -102,7 +102,10 @@ sub search($$;$)
                                         return unless $_[0]->attr('id') && $_[0]->attr('id') eq 'ssb';
                                     });
 
-        carp 'Can not parse Google result.' unless $xx;
+        unless ($xx) {
+            return {num => 0, results => undef};
+        }
+
         my ($p) = $xx->look_down('_tag', 'p');
         carp 'Can not parse Google result.' unless $p && ref $p eq 'HTML::Element';
         my @r = $p->look_down('_tag', 'b');
